@@ -1,0 +1,41 @@
+version: "3.4"
+
+services:
+  postgres:
+    image: postgres:latest
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-h", "postgres"]
+      interval: 10s
+      timeout: 1s
+      retries: 3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=stopwatch-backend
+    volumes:
+      - ./tmp/data/db:/var/lib/postgresql/data
+
+
+  stopwatch-backend:
+    container_name: stopwatch-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "24578"
+    env_file: .env
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - stopwatch-backend
+    ports:
+      - "4000:4000"

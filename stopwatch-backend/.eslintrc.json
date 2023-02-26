@@ -1,0 +1,95 @@
+{
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true
+    },
+    "root": true,
+    "extends": [
+      "airbnb-base",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 13,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "prettier",
+      "@typescript-eslint",
+      "eslint-plugin-import-helpers"
+    ],
+    "rules": {
+      "no-promise-executor-return": "off",
+      "import/no-mutable-exports": "off",
+      "no-param-reassign": 0,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "_"
+        }
+      ],
+      "prettier/prettier": "error",
+      "camelcase": "off",
+      "import/no-unresolved": "off",
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "interface",
+          "format": [
+            "PascalCase"
+          ],
+          "custom": {
+            "regex": "^I[A-Z]",
+            "match": true
+          }
+        }
+      ],
+      "class-methods-use-this": "off",
+      "import/prefer-default-export": "off",
+      "no-shadow": "off",
+      "no-console": "error",
+      "no-useless-constructor": "off",
+      "no-empty-function": "off",
+      "lines-between-class-members": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never"
+        }
+      ],
+      "import-helpers/order-imports": [
+        "warn",
+        {
+          "newlinesBetween": "always",
+          "groups": [
+            "module",
+            "/^@/",
+            [
+              "parent",
+              "sibling",
+              "index"
+            ]
+          ],
+          "alphabetize": {
+            "order": "asc",
+            "ignoreCase": true
+          }
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true
+        }
+      ]
+    },
+    "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
+    }
+  }
+  
