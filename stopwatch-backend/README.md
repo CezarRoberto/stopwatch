@@ -30,6 +30,13 @@ Execute this command inside your direct root
      yarn test
 
 
+**Test E2E**
+
+
+Execute this command inside your direct root
+   
+
+     yarn test:e2e
 
 **Coverage**
 
